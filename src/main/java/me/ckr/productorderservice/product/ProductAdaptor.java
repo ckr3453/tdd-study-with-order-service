@@ -1,5 +1,7 @@
 package me.ckr.productorderservice.product;
 
+import org.springframework.stereotype.Component;
+
 /**
  * packageName : me.ckr.productorderservice.product
  * fileName    : ProductAdaptor
@@ -7,6 +9,7 @@ package me.ckr.productorderservice.product;
  * date        : 25. 1. 9.
  * description :
  */
+@Component
 class ProductAdaptor implements ProductPort {
     private final ProductRepository productRepository;
 
