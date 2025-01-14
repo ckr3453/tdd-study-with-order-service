@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  */
 
 @Component
-public class DatabaseClenaup implements InitializingBean {
+public class DatabaseCleanup implements InitializingBean {
     @PersistenceContext
     private EntityManager entityManager;
 
