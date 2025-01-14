@@ -1,5 +1,9 @@
 package me.ckr.productorderservice.product;
 
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
 
 /**
@@ -9,11 +13,20 @@ import org.springframework.util.Assert;
  * date        : 25. 1. 9.
  * description :
  */
+@Entity
+@Table(name = "products")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 class Product {
-    private final String name;
-    private final int price;
-    private final DiscountPolicy discountPolicy;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String name;
+
+    private int price;
+
+    private DiscountPolicy discountPolicy;
 
     public Product(final AddProductRequest request) {
         Assert.hasText(request.name(), "상품명은 필수입니다.");
@@ -22,25 +35,5 @@ class Product {
         this.name = request.name();
         this.price = request.price();
         this.discountPolicy = request.discountPolicy();
-    }
-
-    public void assignId(final Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public DiscountPolicy getDiscountPolicy() {
-        return discountPolicy;
-    }
-
-    public Long getId() {
-        return id;
     }
 }

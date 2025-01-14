@@ -1,9 +1,6 @@
 package me.ckr.productorderservice.product;
 
-import org.springframework.stereotype.Repository;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * packageName : me.ckr.productorderservice.product
@@ -12,13 +9,6 @@ import java.util.Map;
  * date        : 25. 1. 9.
  * description :
  */
-@Repository
-class ProductRepository {
-    private Long sequence = 0L;
-    private final Map<Long, Product> persistenceMap = new HashMap<>();
 
-    public void save(final Product product) {
-        product.assignId(++sequence);
-        persistenceMap.put(product.getId(), product);
-    }
+interface ProductRepository extends JpaRepository<Product, Long> {
 }
